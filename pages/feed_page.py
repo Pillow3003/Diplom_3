@@ -16,13 +16,12 @@ class FeedPage(BasePage):
         """
         self.wait_for_url(urls.FEED_ORDERS_LIST_PAGE)
 
-    @allure.step('Нажимаем на верхний заказ в ленте заказов')
-    def click_first_order_feed(self):
-        """
-        Кликает по первому заказу в списке.
-        """
-        self.wait_and_find_element(FeedPageLocators.FIRST_ORDER)
-        self.click_element(FeedPageLocators.FIRST_ORDER)
+    @allure.step('Проверяем наличие номера заказа в списке ленты')
+    def check_id_order_in_feed(self, order_id):
+        locator = FeedPageLocators.id_order_card_in_feed_with_substitutions
+        locator_with_order_id = (locator[0], locator[1].format(order_id=order_id))
+        self.wait_and_find_element(locator_with_order_id)
+        return self.check_element_visibility(locator_with_order_id)
 
     @allure.step('Получаем всплывающее окно с информацией о заказе')
     def get_order_modal_window(self):
