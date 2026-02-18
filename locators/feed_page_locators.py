@@ -2,14 +2,14 @@ from selenium.webdriver.common.by import By
 
 class FeedPageLocators:
 
-    # номер первого заказа в ленте заказов
-    ORDERS = (By.XPATH, ".//ul[@class = 'OrderFeed_list__OLh59']/li[1]/a/div/p[@class = 'text text_type_digits-default']")
-
-    # ссылка на детали первого заказ в ленте заказов
-    FIRST_ORDER = (By.XPATH, "(.//a[contains(@class, 'OrderHistory_link__1iNby')])[1]")
-
+    # Номер заказа в ленте — заготовка, в которую нужно подставить id искомого заказа
+    id_order_card_in_feed_with_substitutions = (By.XPATH, './/*[text()="{order_id}"]')
+    
+    # Номер заказа в карточке заказа
+    ORDER_CARD_ID = (By.XPATH, '(//div[contains(@class, "OrderHistory_textBox")]'
+                               '/p[contains(@class, "text_type_digits-default")])[1]')
     # всплывающее окно деталей заказа в ленте заказов
-    MODAL_WINDOW_HEAD = (By.XPATH, ".//div[contains(@class, 'Modal_orderBox')]/parent::div/parent::section")
+    MODAL_WINDOW_HEAD = (By.XPATH, "//h2[text()='Детали ингредиента']/parent::div")
 
     # заказы в списке заказов "Готовы:"
     ORDERS_READY = (By.XPATH, '//ul[contains(@class, "OrderFeed_orderList")]/li')
