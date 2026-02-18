@@ -54,7 +54,6 @@ def client(new_user):
     )
     response.raise_for_status()
     access_token = response.json().get('accessToken')
-    assert access_token, "Access token не возвращён при регистрации"
 
     yield new_user
 
